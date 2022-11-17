@@ -1,0 +1,38 @@
+server:
+  port: 8803
+spring:
+  application:
+    name: jpa-springboot
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mysql_db?serverTimezone=Hongkong&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        order_by:
+          default_null_ordering: last
+        order_inserts: true
+        order_updates: true
+        generate_statistics: false
+        jdbc:
+          batch_size: 5000
+springdoc:
+  swagger-ui:
+    # 修改Swagger UI路径
+    path: /swagger-ui.html
+    # 开启Swagger UI界面
+    enabled: true
+  api-docs:
+    # 修改api-docs路径
+    path: /v3/api-docs
+    # 开启api-docs
+    enabled: true
+    # 配置需要生成接口文档的扫描包
+    packages-to-scan: com.msdn.orm.hresh.controller

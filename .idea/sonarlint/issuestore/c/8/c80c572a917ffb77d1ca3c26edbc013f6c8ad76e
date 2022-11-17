@@ -1,0 +1,8 @@
+
+b
+java:S1612"EReplace this lambda with method reference 'teacherStruct::modelToVO'.(Íªˆé8Ÿ‚˜¨¶0
+X	java:S125""<This block of commented-out lines of code should be removed.(¡¬õ†8¡‚˜¨¶0
+X	java:S125'"<This block of commented-out lines of code should be removed.(¹¾à8ç£¡¨¶0
+]	java:S1253"<This block of commented-out lines of code should be removed.(–‰‘þþÿÿÿÿ8¥‚˜¨¶0
+…
+java:S1488"cImmediately return this expression instead of assigning it to the temporary variable "teacherPage".(Õ½ÿçøÿÿÿÿ8¯‚˜¨¶0

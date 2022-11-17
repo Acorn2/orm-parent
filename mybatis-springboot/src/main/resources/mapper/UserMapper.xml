@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msdn.orm.hresh.mapper.UserMapper">
+
+  <resultMap id="userResultMap" type="com.msdn.orm.hresh.model.User">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="age" property="age"/>
+    <result column="address" property="address"/>
+    <result column="created_date" property="createdDate"/>
+    <result column="last_modified_date" property="lastModifiedDate"/>
+    <result column="del_flag" property="delFlag"/>
+    <result column="create_user_code" property="createUserCode"/>
+    <result column="create_user_name" property="createUserName"/>
+    <result column="last_modified_code" property="lastModifiedCode"/>
+    <result column="last_modified_name" property="lastModifiedName"/>
+    <result column="version" property="version"/>
+  </resultMap>
+
+  <resultMap id="userVoResultMap" type="com.msdn.orm.hresh.vo.UserVO"
+    extends="com.msdn.orm.hresh.mapper.UserMapper.userResultMap">
+    <collection property="jobVOS" resultMap="com.msdn.orm.hresh.mapper.JobMapper.jobResultMap"
+      columnPrefix="job_"/>
+  </resultMap>
+
+  <resultMap id="userResultMap2" type="com.msdn.orm.hresh.model.User"
+    extends="com.msdn.orm.hresh.mapper.UserMapper.userResultMap">
+    <collection property="jobs" resultMap="com.msdn.orm.hresh.mapper.JobMapper.jobResultMap"
+      columnPrefix="job_"/>
+  </resultMap>
+
+  <select id="queryList" resultMap="userResultMap2">
+    SELECT u.*,
+    j.name job_name,
+    j.address job_address
+    FROM
+    user u
+    LEFT JOIN job j ON u.id = j.user_id
+    <where>
+      <if test="name!=null and name!=''">
+        and u.name like concat('%',#{name},'%')
+      </if>
+      <if test="address != null and address !=''">
+        and u.address like concat('%',#{address},'%')
+      </if>
+    </where>
+  </select>
+</mapper>

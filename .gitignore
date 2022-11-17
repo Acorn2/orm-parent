@@ -1,0 +1,4 @@
+# Project exclude paths
+/jpa-springboot/target/
+/mybatis-springboot/target/
+/mybatisplus-springboot/target/

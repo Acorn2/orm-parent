@@ -1,0 +1,130 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="ankanghao (generated)" id="1664245911307-1">
+        <createTable remarks="父用户" tableName="customer">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints unique="true"/>
+            </column>
+            <column name="age" type="INT"/>
+            <column name="address" type="VARCHAR(100)"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column defaultValueNumeric="0" name="del_flag" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_user_name" type="VARCHAR(36)"/>
+            <column name="last_modified_name" type="VARCHAR(36)"/>
+            <column defaultValueNumeric="1" name="version" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ankanghao (generated)" id="1664245911307-2">
+        <createTable remarks="工作" tableName="job">
+            <column name="id" type="VARCHAR(36)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(20)"/>
+            <column name="user_id" type="VARCHAR(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(100)"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column defaultValueBoolean="false" name="del_flag" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_user_code" type="VARCHAR(36)"/>
+            <column name="create_user_name" type="VARCHAR(50)"/>
+            <column name="last_modified_code" type="VARCHAR(36)"/>
+            <column name="last_modified_name" type="VARCHAR(50)"/>
+            <column defaultValueNumeric="1" name="version" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ankanghao (generated)" id="1664245911307-3">
+        <createTable tableName="manga">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(100)"/>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="volumes" type="INT"/>
+            <column name="score" type="DOUBLE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ankanghao (generated)" id="1664245911307-4">
+        <createTable remarks="学生" tableName="student">
+            <column name="id" type="VARCHAR(36)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(20)"/>
+            <column name="teacher_id" type="VARCHAR(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(100)"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column defaultValueNumeric="0" name="del_flag" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_user_code" type="VARCHAR(30)"/>
+            <column name="create_user_name" type="VARCHAR(50)"/>
+            <column name="last_modified_code" type="VARCHAR(30)"/>
+            <column name="last_modified_name" type="VARCHAR(50)"/>
+            <column defaultValueNumeric="1" name="version" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ankanghao (generated)" id="1664245911307-5">
+        <createTable remarks="子用户" tableName="sub_user">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(20)"/>
+            <column name="customer_id" type="VARCHAR(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(100)"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column defaultValueNumeric="0" name="del_flag" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_user_name" type="VARCHAR(30)"/>
+            <column name="last_modified_name" type="VARCHAR(30)"/>
+            <column defaultValueNumeric="1" name="version" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ankanghao (generated)" id="1664245911307-6">
+        <createTable remarks="教师" tableName="teacher">
+            <column name="id" type="VARCHAR(36)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints unique="true"/>
+            </column>
+            <column name="age" type="INT"/>
+            <column name="address" type="VARCHAR(100)"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_date" type="timestamp"/>
+            <column defaultValueNumeric="0" name="del_flag" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_user_code" type="VARCHAR(36)"/>
+            <column name="create_user_name" type="VARCHAR(50)"/>
+            <column name="last_modified_code" type="VARCHAR(36)"/>
+            <column name="last_modified_name" type="VARCHAR(50)"/>
+            <column defaultValueNumeric="1" name="version" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

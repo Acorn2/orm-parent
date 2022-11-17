@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msdn.orm.hresh.mapper.TeacherMapper">
+
+  <resultMap id="teacherResultMap" type="com.msdn.orm.hresh.model.Teacher">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="age" property="age"/>
+    <result column="address" property="address"/>
+    <result column="created_date" property="createdDate"/>
+    <result column="last_modified_date" property="lastModifiedDate"/>
+    <result column="del_flag" property="delFlag"/>
+    <result column="create_user_code" property="createUserCode"/>
+    <result column="create_user_name" property="createUserName"/>
+    <result column="last_modified_code" property="lastModifiedCode"/>
+    <result column="last_modified_name" property="lastModifiedName"/>
+    <result column="version" property="version"/>
+  </resultMap>
+
+  <resultMap id="teacherResultMap2" type="com.msdn.orm.hresh.model.Teacher"
+    extends="com.msdn.orm.hresh.mapper.TeacherMapper.teacherResultMap">
+    <collection property="students"
+      resultMap="com.msdn.orm.hresh.mapper.StudentMapper.studentResultMap"
+      columnPrefix="st_"/>
+  </resultMap>
+
+  <resultMap id="teacherVoResultMap" type="com.msdn.orm.hresh.vo.TeacherVO"
+    extends="com.msdn.orm.hresh.mapper.TeacherMapper.teacherResultMap">
+    <collection property="studentVOS"
+      resultMap="com.msdn.orm.hresh.mapper.StudentMapper.studentResultMap"
+      columnPrefix="st_"/>
+  </resultMap>
+
+  <select id="queryList" resultMap="teacherVoResultMap">
+    SELECT t.*,
+    st.name st_name,
+    st.address st_address
+    FROM
+    teacher t
+    LEFT JOIN student st ON t.id = st.teacher_id
+    <where>
+      <if test="name!=null and name!=''">
+        and t.name like concat('%',#{name},'%')
+      </if>
+      <if test="address != null and address !=''">
+        and t.address like concat('%',#{address},'%')
+      </if>
+    </where>
+  </select>
+
+</mapper>

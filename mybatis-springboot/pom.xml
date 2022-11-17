@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>orm-parent</artifactId>
+    <groupId>com.msdn.hresh</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>mybatis-springboot</artifactId>
+
+  <properties>
+    <mybatis.version>2.1.4</mybatis.version>
+    <mapper.version>4.1.5</mapper.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>${mybatis.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>tk.mybatis</groupId>
+      <artifactId>mapper</artifactId>
+      <version>${mapper.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper-spring-boot-starter</artifactId>
+      <version>1.4.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons</artifactId>
+      <version>2.4.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+      <version>4.16.1</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-maven-plugin</artifactId>
+        <version>4.16.1</version>
+        <configuration>
+          <!--properties文件路径，该文件记录了数据库连接信息等-->
+          <propertyFile>src/main/resources/application.yml</propertyFile>
+          <propertyFileWillOverride>true</propertyFileWillOverride>
+          <!--生成文件的路径-->
+          <!--          <outputChangeLogFile>src/main/resources/liquibase/changelog/master2.xml</outputChangeLogFile>-->
+          <!--          <changeLogFile>src/main/resources/liquibase/changelog/user-matter.xml</changeLogFile>-->
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.msdn.hresh</groupId>
+        <artifactId>liquibase-changelog-generate</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <configuration>
+          <sourceFolderPath>src/main/resources/liquibase/changelog/
+          </sourceFolderPath><!-- 当前应用根目录 -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
