@@ -3,6 +3,8 @@ package com.msdn.orm.hresh.controller;
 import com.github.pagehelper.Page;
 import com.msdn.orm.hresh.common.entity.PageResult;
 import com.msdn.orm.hresh.common.entity.Result;
+import com.msdn.orm.hresh.common.validator.ValidateGroup.Add;
+import com.msdn.orm.hresh.common.validator.ValidateGroup.Edit;
 import com.msdn.orm.hresh.dto.UserDTO;
 import com.msdn.orm.hresh.dto.UserQueryPageDTO;
 import com.msdn.orm.hresh.service.UserService;
@@ -74,7 +76,7 @@ public class UserController {
 
   @PutMapping
   @Operation(description = "编辑用户")
-  public Result<Object> edit(@Validated(Update.class) @RequestBody UserDTO dto) {
+  public Result<Object> edit(@Validated(Edit.class) @RequestBody UserDTO dto) {
     int count = userService.edit(dto);
     if (count < 1) {
       return Result.failed();
