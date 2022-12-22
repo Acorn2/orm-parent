@@ -69,7 +69,7 @@
         <artifactId>liquibase-changelog-generate</artifactId>
         <version>1.0-SNAPSHOT</version>
         <configuration>
-          <sourceFolderPath>src/main/resources/liquibase/changelog/
+          <sourceFolderPath>src/main/resources/liquibase/changelogs/
           </sourceFolderPath><!-- 当前应用根目录 -->
         </configuration>
       </plugin>

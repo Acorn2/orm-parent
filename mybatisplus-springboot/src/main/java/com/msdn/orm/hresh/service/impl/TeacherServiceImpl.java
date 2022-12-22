@@ -33,12 +33,14 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
   public List<TeacherVO> queryList(TeacherDTO dto) {
 //    List<Teacher> teachers = this.lambdaQuery().list();
 
-    List<Teacher> teachers = this.lambdaQuery().like(Teacher::getName, dto.getName())
-        .orderByDesc(Teacher::getName).list();
+//    List<Teacher> teachers = this.lambdaQuery().like(Teacher::getName, dto.getName())
+//        .orderByDesc(Teacher::getName).list();
 
-//    return teacherMapper.queryList(dto);
+    return teacherMapper.queryList(dto);
 //    List<Teacher> teachers = teacherMapper.queryList(dto);
-    return teacherStruct.modelToVO(teachers);
+//    return teacherStruct.modelToVO(teachers);
+//    List<Teacher> teachers = teacherMapper.queryList(dto);
+//    return teacherStruct.modelToVO(teachers);
   }
 
   @Override

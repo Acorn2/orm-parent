@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20221123_174742_986__create_table_user
+      author: ankanghao
+      changes:
+        - createTable:
+            tableName: admin
+            columns:
+              - column:
+                  name: id
+                  type: ${id}
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+              - column:
+                  name: password
+                  type: varchar(100)
+              - column:
+                  name: create_time
+                  type: ${time}

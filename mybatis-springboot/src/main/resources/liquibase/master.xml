@@ -3,6 +3,10 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-  <includeAll path="src/main/resources/liquibase/changelog"/>
+  <property name="id" value="int(11)" dbms="mysql"/>
+  <property name="time" value="timestamp" dbms="mysql"/>
+
+<!--  <includeAll path="src/main/resources/liquibase/changelog/"/>-->
+  <includeAll path="liquibase/changelogs/"/>
 
 </databaseChangeLog>

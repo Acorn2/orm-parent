@@ -1,5 +1,6 @@
 package com.msdn.orm.hresh.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.msdn.orm.hresh.dto.StudentDTO;
@@ -22,7 +23,11 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
 
   @Override
   public IPage<StudentVO> queryPage(StudentQueryPageDTO dto) {
-    IPage<StudentVO> studentVOIPage = this.lambdaQuery().page(dto)
+    IPage<StudentVO> studentVOIPage = this.lambdaQuery().and(t -> {
+      t.like(StrUtil.isNotBlank(dto.getName()), Student::getName, "%" + dto.getName() + "%")
+          .or()
+          .like(StrUtil.isNotBlank(dto.getName()), Student::getAddress, "%" + dto.getName() + "%");
+    }).page(dto)
         .convert(student -> studentStruct.modelToVO(student));
     return studentVOIPage;
   }
@@ -40,7 +45,10 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
 
   @Override
   public Boolean add(StudentDTO dto) {
-    return this.save(studentStruct.dtoToModel(dto));
+    Student student = studentStruct.dtoToModel(dto);
+    boolean save = this.save(student);
+    System.out.println(student.getId());
+    return save;
   }
 
   @Override
