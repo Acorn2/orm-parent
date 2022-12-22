@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TeacherMapper extends BaseMapper<Teacher> {
 
-  List<TeacherVO> queryList(TeacherDTO dto);
+  List<Teacher> queryList(TeacherDTO dto);
 }

@@ -32,7 +32,7 @@
       columnPrefix="st_"/>
   </resultMap>
 
-  <select id="queryList" resultMap="teacherVoResultMap">
+  <select id="queryList" resultMap="teacherResultMap2">
     SELECT t.*,
     st.name st_name,
     st.address st_address
